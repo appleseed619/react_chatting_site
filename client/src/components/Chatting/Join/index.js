@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import qs from 'query-string';
 import "./style.css";
 
-const Join = () => {
+const Join = ({ location }) => {
   const [name, setname] = useState("");
-  const [room, setroom] = useState("");
+  const [room, setroom] = useState("Planning");
+  const { to } = qs.parse(location.search);
 
   return (
     <div className="joinOuterContainer">
@@ -14,9 +16,9 @@ const Join = () => {
           <input type="text" placeholder="Name" className="joinInput" onChange={ e => setname(e.target.value)} />
         </div>
         <div>
-          <input type="text" placeholder="Room" className="joinInput" onChange={ e => setroom(e.target.value)} />
+          <input type="text" placeholder="Room" className="joinInput" defaultValue='Planning' disabled onChange={ e => setroom(e.target.value)} />
         </div>
-        <Link onClick={e => (!name || !room ) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
+        <Link onClick={e => (!name || !room ) ? e.preventDefault() : null} to={`/${to}?name=${name}&room=${room}`}>
             <button className='button mt-20' type='submit'>
                 Sign In
             </button>

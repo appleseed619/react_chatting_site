@@ -5,7 +5,7 @@ import './style.css';
 const Message = ({ message: { user, text }, name }) => {
     let isCurrentUser = false;
     const trimmedName = name.trim().toLowerCase();
-
+    const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
     if (user === trimmedName) {
         isCurrentUser = true;
     }
@@ -15,11 +15,11 @@ const Message = ({ message: { user, text }, name }) => {
         ? (
             <div className='messageContainer justifyEnd'>
                 <p className='sentText pr-10'>
-                    {trimmedName}
+                    {capitalize(trimmedName)}
                 </p>
-                <div className='messageBox backgroungBlue'>
+                <div className='messageBox backgroundBlue'>
                     <p className='messageText colorWhite'>
-                        {ReactEmoji.emojify(text)}
+                        {ReactEmoji.emojify(capitalize(text))}
                     </p>
                 </div>
             </div>
@@ -28,11 +28,11 @@ const Message = ({ message: { user, text }, name }) => {
             <div className='messageContainer justifyStart'>
                 <div className='messageBox backgroundLight'>
                     <p className='messageText colorDark'>
-                        {ReactEmoji.emojify(text)}
+                        {ReactEmoji.emojify(capitalize(text))}
                     </p>
                 </div>
                 <p className='sentText'>
-                    {user}
+                    {capitalize(user)}
                 </p>
             </div>
         )

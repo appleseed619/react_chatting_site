@@ -35,6 +35,36 @@ io.on('connection', (socket) => {
         cb();
     });
 
+    socket.on('sendPoints', (message, callback) => {
+        const user = getUser(socket.id) || {};
+        let users = getUsersInRoom(user.room);
+        users = users.map( usr => {
+            if(usr.id === user.id) {
+                usr.points = message;
+
+                return usr;
+            }
+            return usr;
+        })
+        console.log(users)
+        // io.to(user.room).emit('message', { user: user.name, points: message });
+        io.to(user.room).emit('roomData', { room: user.room, users: users });
+        callback();
+    });
+
+    socket.on('flipCards', (message, callback) => {
+        const user = getUser(socket.id) || {};
+        let users = getUsersInRoom(user.room);
+        users = users.map( usr => {
+            usr.showPoints = true;
+            return usr;
+        })
+        console.log(users)
+        // io.to(user.room).emit('message', { user: user.name, points: message });
+        io.to(user.room).emit('roomData', { room: user.room, users: users });
+        callback();
+    });
+
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id) || {};
 

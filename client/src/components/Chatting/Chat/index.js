@@ -50,7 +50,6 @@ const Chat = ({ location }) => {
         }
     }
 
-    console.log(users);
     return (
         <div className='outerContainer'>
             <div className='container'>

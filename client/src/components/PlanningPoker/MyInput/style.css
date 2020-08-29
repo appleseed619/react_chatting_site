@@ -1,0 +1,26 @@
+.im-container {
+    width: 100vw;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.im-input {
+    padding: 0.7rem;
+    border-radius: 10px;
+}
+
+.im-btn {
+    color: white;
+    margin-left: 2rem;
+    background-color: rgb(40, 138, 202);
+    transform: scale(0.9);
+}
+
+.im-btn:hover,
+.im-btn:focus {
+    background-color: rgb(10, 83, 133);
+    transform: scale(1.0);
+}
